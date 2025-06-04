@@ -89,10 +89,16 @@ async def profile_handler(message: types.Message):
     ar = user['ar_balance']
     role = user['role']
     tournament = user['current_tournament'] if user['current_tournament'] else "-"
-    await message.answer(
-        f"Профиль: @{nickname}\nРанг: {rank} ({mmr} MMR)\nAR: {ar}\nТурнир: {tournament}\nРоль: {role}",
-        reply_markup=profile_keyboard(role)
+    profile_text = (
+        "━━━━━━━━━━━━━━━━\n"
+        f"👤 Профиль: @{nickname}\n\n"
+        f"🏅 Ранг: {rank} ({mmr} MMR)\n"
+        f"💳 Баланс: {ar} AR\n"
+        f"🏆 Турнир: {tournament}\n"
+        f"🛡️ Роль: {role}\n"
+        "━━━━━━━━━━━━━━━━"
     )
+    await message.answer(profile_text, reply_markup=profile_keyboard(role))
 
 @dp.message_handler(lambda m: m.text == "Сменить никнейм")
 async def change_nickname_handler(message: types.Message):
