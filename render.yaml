@@ -1,7 +1,0 @@
-
-services:
-  - type: worker
-    name: quaros-bot
-    env: python
-    buildCommand: "bash build.sh"
-    startCommand: "python main.py"
